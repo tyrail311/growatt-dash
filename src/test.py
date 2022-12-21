@@ -36,13 +36,12 @@ def inverter_data(inverter_id, date=None):
         Get inverter data for specified date or today.
         """
         date_str = __get_date_string(date=date)
-        response = session.get(get_url('newInverterAPI.do'), params={
+        response = session.get(get_url('newTwoInverterAPI.do'), params={
             'op': 'getInverterData',
             'id': inverter_id,
             'type': 1,
             'date': date_str
         })
-        print(response.content.decode('utf-8'))
         data = json.loads(response.content.decode('utf-8'))
         return data
 print(inverter_data('JPK1CEG0AJ', date=datetime.datetime(2022, 12, 20).date()))
